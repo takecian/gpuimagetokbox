@@ -1,0 +1,10 @@
+PODS:
+  - OpenTok (2.7.0)
+
+DEPENDENCIES:
+  - OpenTok
+
+SPEC CHECKSUMS:
+  OpenTok: 56dbc82766bd925d7b19c4b4468534014eace65d
+
+COCOAPODS: 0.39.0
