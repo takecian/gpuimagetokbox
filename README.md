@@ -9,6 +9,6 @@ git clone git@github.com:takecian/gpuimagetokbox.git
 pod install
 open gpuimagetokbox.xcworkspace 
 ```
-Set your credentinal for TokBox(https://dashboard.tokbox.com).
+Set your credentinal for TokBox(https://dashboard.tokbox.com) in #import GPUImageMovieCapture.m.
 
 
