@@ -447,6 +447,7 @@ didFailWithError:(OTError*)error
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
     
     _videoFrame.timestamp = time;
+    OSType pixelFormat = CVPixelBufferGetPixelFormatType(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     if (width != _captureWidth || height != _captureHeight) {
