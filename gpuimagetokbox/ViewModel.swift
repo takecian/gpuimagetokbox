@@ -8,26 +8,8 @@
 
 import UIKit
 
-protocol StreamerViewModelDelegate {
-    func streamingStoppWithError()
-    func streamingStopped()
-}
-
-enum StreamerState {
-    case Setup
-    case Prepare
-    case Streaming
-}
-
 final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
-    var delegate: StreamerViewModelDelegate?
-    
     let filterView = GPUImageView()
-    var muteMark: GPUImagePicture!
-    var waterMark: GPUImagePicture!
-    var telop: GPUImagePicture!
-    var frameImage: GPUImagePicture!
-    var stillGpuImage: GPUImagePicture!
     var camera: GPUImageVideoCamera!
     var streamer: GPUImageMovieCapture!
     var filterGroup: GPUImageFilterGroup?
@@ -81,11 +63,6 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         
         self.updateEffect()
     }
-
-    func handleCasStartFailed() {
-        self.filterGroup?.removeTarget(self.streamer)
-        self.camera.audioEncodingTarget = nil;
-    }
     
     func finishStreaming() {
         self.streamer.finishRecording()
@@ -111,14 +88,6 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         return filter
     }
 
-    func createTelopFilter(img: UIImage) -> GPUImageFilter {
-        let filter = GPUImageOverlayBlendFilter()
-        self.telop = GPUImagePicture(image: img, smoothlyScaleOutput:true)
-        self.telop.processImage()
-        self.telop.addTarget(filter)
-        return filter
-    }
-    
     func connectFilters(filters: [GPUImageOutput]) -> GPUImageFilterGroup {
         let filterGroup = GPUImageFilterGroup()
         
@@ -146,11 +115,6 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         return filterGroup
     }
 
-    func generateThumbnail() -> CGImage {
-        self.filterGroup?.useNextFrameForImageCapture()
-        return (self.filterGroup?.newCGImageFromCurrentlyProcessedOutput().takeRetainedValue())!
-    }
-    
     // MARK:
     func willOutputSampleBuffer(sampleBuffer: CMSampleBufferRef) {
 //        if streamer.active() {
