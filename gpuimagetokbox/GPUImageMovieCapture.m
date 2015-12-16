@@ -433,7 +433,7 @@ didFailWithError:(OTError*)error
         if (!(_capturing && _videoCaptureConsumer)) {
             return;
         }
-//        [self sendFrame:sampleBuffer];
+        [self sendFrame:sampleBuffer];
     }];
 }
 

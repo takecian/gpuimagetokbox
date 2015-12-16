@@ -22,16 +22,6 @@ enum StreamerState {
 final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     var delegate: StreamerViewModelDelegate?
     
-    var isMute = false
-    var isFront = true
-    var isMirror = false
-    var isRadioMode = false
-    var cid: Int!
-    var wsOpenUrl: String?
-    var isPickupImageMode = false
-    var isEventLogged = false
-    var retryEnable = true
-    
     let filterView = GPUImageView()
     var muteMark: GPUImagePicture!
     var waterMark: GPUImagePicture!
@@ -41,18 +31,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     var camera: GPUImageVideoCamera!
     var streamer: GPUImageMovieCapture!
     var filterGroup: GPUImageFilterGroup?
-    let filterCount = 10
-    var stillImage: UIImage!
-    var slimValue: CGFloat = 1.0
-    var faceValue: CGFloat = 9.0
-    var filterIndex = 0
-    var frameIndex = 0
-    var telopImage: UIImage?
     
-    var faces = [CGRect]()
-    var lastFaceDetected = NSDate()
-    
-    var videoRect: CGRect!
     var isStreaming: Bool {
         get {
             return self.streamer.active()
@@ -109,8 +88,6 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     }
     
     func finishStreaming() {
-        self.retryEnable = false
-
         self.streamer.finishRecording()
         self.filterGroup?.removeTarget(self.streamer)
         self.camera.audioEncodingTarget = nil;
@@ -176,9 +153,9 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     
     // MARK:
     func willOutputSampleBuffer(sampleBuffer: CMSampleBufferRef) {
-        if streamer.active() {
-            let copyBuffer = streamer.copySampleBuffer(sampleBuffer).takeRetainedValue()
-            self.streamer.sendFrame(copyBuffer)
-        }
+//        if streamer.active() {
+//            let copyBuffer = streamer.copySampleBuffer(sampleBuffer).takeRetainedValue()
+//            self.streamer.sendFrame(copyBuffer)
+//        }
     }
 }
