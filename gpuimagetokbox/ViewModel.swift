@@ -29,9 +29,9 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         output.newFrameAvailableBlockWithTime = {
             [unowned self] (frametime) in
             if self.output.active() {
-//                VideoGenerator.sampleBufferFromRawData(self.output, frametime: frametime, block: { [unowned self] (sampleBuffer) -> Void in
-//                    self.output.sendFrame(sampleBuffer)
-//                    })
+                VideoGenerator.sampleBufferFromRawData(self.output, frametime: frametime, block: { [unowned self] (sampleBuffer) -> Void in
+                    self.output.sendFrame(sampleBuffer)
+                    })
             }
         }
         camera.delegate = self
@@ -92,8 +92,8 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     // MARK:
     func willOutputSampleBuffer(sampleBuffer: CMSampleBufferRef) {
         if output.active() {
-            let copyBuffer = VideoGenerator.copySampleBuffer(sampleBuffer).takeRetainedValue()
-            output.sendFrame(copyBuffer)
+//            let copyBuffer = VideoGenerator.copySampleBuffer(sampleBuffer).takeRetainedValue()
+//            output.sendFrame(copyBuffer)
         }
     }
 }

@@ -9,11 +9,11 @@
 #import "GPUImageCustomRawDataOutput.h"
 #import "TBExamplePublisher.h"
 
-static NSString* const kApiKey = @"45432642";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX40NTQzMjY0Mn5-MTQ1MDA2NzM0MzU5Mn5tZjFkNlRTV1RWNGNIc09zVUNTOTd2bEl-fg";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NTQzMjY0MiZzaWc9YWEyMzgxMjIyNzUzOTE2OWQ0YTRkZjliZjkxNjA3MGM4MTIxMDkxYjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5UUXpNalkwTW41LU1UUTFNREEyTnpNME16VTVNbjV0WmpGa05sUlRWMVJXTkdOSWMwOXpWVU5UT1RkMmJFbC1mZyZjcmVhdGVfdGltZT0xNDUwMDY3MzYzJm5vbmNlPTAuNzYzNDkzODg4MjgzNzI3JmV4cGlyZV90aW1lPTE0NTA0MzU3MDMmY29ubmVjdGlvbl9kYXRhPQ==";
+static NSString* const kToken = @"";
 
 @interface GPUImageCustomRawDataOutput ()<OTSessionDelegate, OTPublisherDelegate>
 
@@ -407,20 +407,16 @@ didFailWithError:(OTError*)error
     
     if (!CVPixelBufferIsPlanar(imageBuffer))
     {
-        [_videoFrame.planes
-         addPointer:CVPixelBufferGetBaseAddress(imageBuffer)];
+        [_videoFrame.planes addPointer:CVPixelBufferGetBaseAddress(imageBuffer)];
     } else if ([self imageBufferIsSanitary:imageBuffer]) {
         for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
-            [_videoFrame.planes addPointer:
-             CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i)];
+            [_videoFrame.planes addPointer: CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i)];
         }
     } else {
-        [self sanitizeImageBuffer:imageBuffer
-                             data:&sanitizedImageBuffer
-                           planes:_videoFrame.planes];
+        [self sanitizeImageBuffer:imageBuffer data:&sanitizedImageBuffer planes:_videoFrame.planes];
     }
     
-    NSLog(@"send height = %d, width = %d, time.value = %lld", height, width, time.value/time.timescale);
+    NSLog(@"send height = %zu, width = %zu, time.value = %lld", height, width, time.value/time.timescale);
     [_videoCaptureConsumer consumeFrame:_videoFrame];
     
     free(sanitizedImageBuffer);

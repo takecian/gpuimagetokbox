@@ -30,6 +30,7 @@
     
     GLubyte *outputBytes = [output rawBytesForImage];
     NSInteger bytesPerRow = [output bytesPerRowInOutput];
+    NSLog(@"bytesPerRow = %ld", (long)bytesPerRow);
 
     CVPixelBufferRef pixel_buffer = NULL;
     OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
@@ -54,7 +55,6 @@
     CMSampleBufferGetSampleTimingInfoArray(newSampleBuffer, count, pInfo, &count);
     for (CMItemCount i = 0; i < count; i++)
     {
-        pInfo[i].duration = CMTimeMake(1, 12);
         pInfo[i].decodeTimeStamp = newTimeStamp; // kCMTimeInvalid if in sequence
         pInfo[i].presentationTimeStamp = newTimeStamp;
         
@@ -68,7 +68,6 @@
     CVPixelBufferRelease(pixel_buffer);
 
     [output unlockFramebufferAfterReading];
-
     return;
 }
 
