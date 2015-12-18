@@ -37,7 +37,7 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NTQzMjY0MiZzaWc9YWEyMzgxMj
     _captureHeight = 480;
     
     _videoFrame = [[OTVideoFrame alloc] initWithFormat:
-                   [OTVideoFormat videoFormatI420WithWidth:_captureWidth
+                   [OTVideoFormat videoFormatNV12WithWidth:_captureWidth
                                                     height:_captureHeight]];
     // setup session
     // Step 1: As the view comes into the foreground, initialize a new instance
@@ -259,7 +259,7 @@ didFailWithError:(OTError*)error
     _captureWidth = width;
     _captureHeight = height;
     [_videoFrame setFormat:[OTVideoFormat
-                            videoFormatI420WithWidth:_captureWidth
+                            videoFormatNV12WithWidth:_captureWidth
                             height:_captureHeight]];
 }
 

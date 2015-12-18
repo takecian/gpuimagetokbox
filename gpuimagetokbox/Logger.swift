@@ -13,12 +13,12 @@ class Logger{
         function: String = __FUNCTION__,
         file: String = __FILE__,
         line: Int = __LINE__) {
-            #if DEBUG
+//            #if DEBUG
             var filename = file
             if let match = filename.rangeOfString("[^/]*$", options: .RegularExpressionSearch) {
                 filename = filename.substringWithRange(match)
             }
             print("\(NSDate().timeIntervalSince1970):\(filename):L\(line):\(function) \"\(message)\"")
-            #endif
+//            #endif
     }
 }

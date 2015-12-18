@@ -6,7 +6,6 @@
 //
 
 #import <OpenTok/OpenTok.h>
-#import "GPUImageMovieCapture.h"
 
 @interface TBExamplePublisher : OTPublisherKit
 
@@ -14,8 +13,7 @@
 
 @property(nonatomic, assign) AVCaptureDevicePosition cameraPosition;
 
-- (id)initWithDelegate: (id<OTPublisherDelegate>)delegate
-                  name: (NSString*)name
-               capture: (GPUImageMovieCapture*)videoCapture;
-
+- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
+                  name:(NSString*)name
+               capture:(id<OTVideoCapture>)capture;
 @end

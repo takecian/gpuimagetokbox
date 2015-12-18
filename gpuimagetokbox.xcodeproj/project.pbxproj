@@ -200,12 +200,14 @@
 		AC9D693A1C2171A700EE8080 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9D69391C2171A700EE8080 /* Foundation.framework */; };
 		AC9D693C1C2171AF00EE8080 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9D693B1C2171AF00EE8080 /* libc++.tbd */; };
 		AC9D693E1C2171B700EE8080 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9D693D1C2171B700EE8080 /* libsqlite3.tbd */; };
-		AC9D69411C2173A300EE8080 /* GPUImageMovieCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69401C2173A300EE8080 /* GPUImageMovieCapture.m */; };
-		AC9D694A1C2173ED00EE8080 /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69431C2173ED00EE8080 /* TBExamplePublisher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC9D694B1C2173ED00EE8080 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69451C2173ED00EE8080 /* TBExampleSubscriber.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC9D694C1C2173ED00EE8080 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69471C2173ED00EE8080 /* TBExampleVideoCapture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC9D694D1C2173ED00EE8080 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69491C2173ED00EE8080 /* TBExampleVideoRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC9D69501C21742C00EE8080 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D694F1C21742C00EE8080 /* Logger.swift */; };
+		AC9D695B1C226EA600EE8080 /* GPUImageColorSpaceConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D695A1C226EA600EE8080 /* GPUImageColorSpaceConverter.m */; };
+		AC9D69961C23A2EA00EE8080 /* VideoGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69951C23A2EA00EE8080 /* VideoGenerator.m */; };
+		AC9D69991C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69981C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m */; };
+		AC9D699D1C23D6A800EE8080 /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -578,10 +580,6 @@
 		AC9D69391C2171A700EE8080 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC9D693B1C2171AF00EE8080 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		AC9D693D1C2171B700EE8080 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		AC9D693F1C2173A300EE8080 /* GPUImageMovieCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageMovieCapture.h; sourceTree = "<group>"; };
-		AC9D69401C2173A300EE8080 /* GPUImageMovieCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageMovieCapture.m; sourceTree = "<group>"; };
-		AC9D69421C2173ED00EE8080 /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
-		AC9D69431C2173ED00EE8080 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
 		AC9D69441C2173ED00EE8080 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
 		AC9D69451C2173ED00EE8080 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		AC9D69461C2173ED00EE8080 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
@@ -589,6 +587,14 @@
 		AC9D69481C2173ED00EE8080 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
 		AC9D69491C2173ED00EE8080 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoRender.m; sourceTree = "<group>"; };
 		AC9D694F1C21742C00EE8080 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AC9D69591C226EA600EE8080 /* GPUImageColorSpaceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageColorSpaceConverter.h; sourceTree = "<group>"; };
+		AC9D695A1C226EA600EE8080 /* GPUImageColorSpaceConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageColorSpaceConverter.m; sourceTree = "<group>"; };
+		AC9D69941C23A2EA00EE8080 /* VideoGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGenerator.h; sourceTree = "<group>"; };
+		AC9D69951C23A2EA00EE8080 /* VideoGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGenerator.m; sourceTree = "<group>"; };
+		AC9D69971C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageCustomRawDataOutput.h; sourceTree = "<group>"; };
+		AC9D69981C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageCustomRawDataOutput.m; sourceTree = "<group>"; };
+		AC9D699B1C23D6A800EE8080 /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
+		AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
 		C1D2ACACBA59D702702846C0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CDD033B8BBF63A6FA1B0CE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -674,16 +680,20 @@
 				AC9D694E1C2173F800EE8080 /* TokBoxSample */,
 				AC9D671A1C216F6400EE8080 /* GPUImage */,
 				AC9D67081C216E9B00EE8080 /* AppDelegate.swift */,
+				AC9D69941C23A2EA00EE8080 /* VideoGenerator.h */,
+				AC9D69951C23A2EA00EE8080 /* VideoGenerator.m */,
 				AC9D670A1C216E9B00EE8080 /* ViewController.swift */,
 				AC9D69211C21712E00EE8080 /* ViewModel.swift */,
-				AC9D693F1C2173A300EE8080 /* GPUImageMovieCapture.h */,
-				AC9D69401C2173A300EE8080 /* GPUImageMovieCapture.m */,
 				AC9D694F1C21742C00EE8080 /* Logger.swift */,
 				AC9D671B1C216F7600EE8080 /* gpuimagetokbox-Bridging-Header.h */,
 				AC9D670C1C216E9B00EE8080 /* Main.storyboard */,
 				AC9D670F1C216E9B00EE8080 /* Assets.xcassets */,
 				AC9D67111C216E9B00EE8080 /* LaunchScreen.storyboard */,
 				AC9D67141C216E9B00EE8080 /* Info.plist */,
+				AC9D69591C226EA600EE8080 /* GPUImageColorSpaceConverter.h */,
+				AC9D695A1C226EA600EE8080 /* GPUImageColorSpaceConverter.m */,
+				AC9D69971C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.h */,
+				AC9D69981C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m */,
 			);
 			path = gpuimagetokbox;
 			sourceTree = "<group>";
@@ -1043,14 +1053,14 @@
 		AC9D694E1C2173F800EE8080 /* TokBoxSample */ = {
 			isa = PBXGroup;
 			children = (
-				AC9D69421C2173ED00EE8080 /* TBExamplePublisher.h */,
-				AC9D69431C2173ED00EE8080 /* TBExamplePublisher.m */,
 				AC9D69441C2173ED00EE8080 /* TBExampleSubscriber.h */,
 				AC9D69451C2173ED00EE8080 /* TBExampleSubscriber.m */,
 				AC9D69461C2173ED00EE8080 /* TBExampleVideoCapture.h */,
 				AC9D69471C2173ED00EE8080 /* TBExampleVideoCapture.m */,
 				AC9D69481C2173ED00EE8080 /* TBExampleVideoRender.h */,
 				AC9D69491C2173ED00EE8080 /* TBExampleVideoRender.m */,
+				AC9D699B1C23D6A800EE8080 /* TBExamplePublisher.h */,
+				AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */,
 			);
 			name = TokBoxSample;
 			sourceTree = "<group>";
@@ -1214,6 +1224,7 @@
 				AC9D68B01C216F7900EE8080 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				AC9D68901C216F7900EE8080 /* GPUImageAmatorkaFilter.m in Sources */,
 				AC9D68FA1C216F7900EE8080 /* GPUImageSaturationFilter.m in Sources */,
+				AC9D699D1C23D6A800EE8080 /* TBExamplePublisher.m in Sources */,
 				AC9D68DC1C216F7900EE8080 /* GPUImageMosaicFilter.m in Sources */,
 				AC9D68F31C216F7900EE8080 /* GPUImageRawDataOutput.m in Sources */,
 				AC9D68831C216F7900EE8080 /* GPUImagePicture.m in Sources */,
@@ -1221,6 +1232,7 @@
 				AC9D68C11C216F7900EE8080 /* GPUImageHistogramFilter.m in Sources */,
 				AC9D68F51C216F7900EE8080 /* GPUImageRGBDilationFilter.m in Sources */,
 				AC9D687D1C216F7900EE8080 /* GPUImageColourFASTSamplingOperation.m in Sources */,
+				AC9D695B1C226EA600EE8080 /* GPUImageColorSpaceConverter.m in Sources */,
 				AC9D690D1C216F7900EE8080 /* GPUImageTextureOutput.m in Sources */,
 				AC9D68A21C216F7900EE8080 /* GPUImageCrosshairGenerator.m in Sources */,
 				AC9D68FE1C216F7900EE8080 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
@@ -1230,7 +1242,6 @@
 				AC9D68D61C216F7900EE8080 /* GPUImageLuminosity.m in Sources */,
 				AC9D69191C216F7900EE8080 /* GPUImageUIElement.m in Sources */,
 				AC9D69501C21742C00EE8080 /* Logger.swift in Sources */,
-				AC9D69411C2173A300EE8080 /* GPUImageMovieCapture.m in Sources */,
 				AC9D689B1C216F7900EE8080 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				AC9D68B81C216F7900EE8080 /* GPUImageGlassSphereFilter.m in Sources */,
 				AC9D68F11C216F7900EE8080 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
@@ -1295,7 +1306,6 @@
 				AC9D69011C216F7900EE8080 /* GPUImageSmoothToonFilter.m in Sources */,
 				AC9D694B1C2173ED00EE8080 /* TBExampleSubscriber.m in Sources */,
 				AC9D694D1C2173ED00EE8080 /* TBExampleVideoRender.m in Sources */,
-				AC9D694A1C2173ED00EE8080 /* TBExamplePublisher.m in Sources */,
 				AC9D694C1C2173ED00EE8080 /* TBExampleVideoCapture.m in Sources */,
 				AC9D68BD1C216F7900EE8080 /* GPUImageHazeFilter.m in Sources */,
 				AC9D68981C216F7900EE8080 /* GPUImageChromaKeyBlendFilter.m in Sources */,
@@ -1319,6 +1329,7 @@
 				AC9D690E1C216F7900EE8080 /* GPUImageThreeInputFilter.m in Sources */,
 				AC9D68CE1C216F7900EE8080 /* GPUImageLightenBlendFilter.m in Sources */,
 				AC9D69061C216F7900EE8080 /* GPUImageSourceOverBlendFilter.m in Sources */,
+				AC9D69991C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m in Sources */,
 				AC9D68B21C216F7900EE8080 /* GPUImageFilterGroup.m in Sources */,
 				AC9D68BE1C216F7900EE8080 /* GPUImageHighlightShadowFilter.m in Sources */,
 				AC9D68D71C216F7900EE8080 /* GPUImageLuminosityBlendFilter.m in Sources */,
@@ -1353,6 +1364,7 @@
 				AC9D691A1C216F7900EE8080 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				AC9D688F1C216F7900EE8080 /* GPUImageAlphaBlendFilter.m in Sources */,
 				AC9D69171C216F7900EE8080 /* GPUImageTwoPassFilter.m in Sources */,
+				AC9D69961C23A2EA00EE8080 /* VideoGenerator.m in Sources */,
 				AC9D68CD1C216F7900EE8080 /* GPUImageLevelsFilter.m in Sources */,
 				AC9D67091C216E9B00EE8080 /* AppDelegate.swift in Sources */,
 				AC9D68AB1C216F7900EE8080 /* GPUImageEmbossFilter.m in Sources */,

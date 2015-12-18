@@ -11,83 +11,56 @@ import UIKit
 final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     let filterView = GPUImageView()
     var camera: GPUImageVideoCamera!
-    var streamer: GPUImageMovieCapture!
     var filterGroup: GPUImageFilterGroup?
-    
-    var isStreaming: Bool {
-        get {
-            return self.streamer.active()
-        }
-    }
+    var output: GPUImageCustomRawDataOutput!
     
     func startCapture() {
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
-            // simulator
-        #else
-            
-            self.camera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: AVCaptureDevicePosition.Front)
-            
-            self.camera.frameRate = 12
-            
-            self.camera.outputImageOrientation = UIInterfaceOrientation.Portrait
-            self.camera.horizontallyMirrorFrontFacingCamera = true
-            self.camera.horizontallyMirrorRearFacingCamera = false
-            
-            self.camera.startCameraCapture()
-        #endif
+        camera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: AVCaptureDevicePosition.Front)
+        
+        camera.frameRate = 12
+        
+        camera.outputImageOrientation = UIInterfaceOrientation.Portrait
+        camera.horizontallyMirrorFrontFacingCamera = true
+        camera.horizontallyMirrorRearFacingCamera = false
+        
+        camera.startCameraCapture()
+        output = GPUImageCustomRawDataOutput(imageSize: CGSizeMake(640, 480), resultsInBGRAFormat: false)
+        output.newFrameAvailableBlockWithTime = {
+            [unowned self] (frametime) in
+            if self.output.active() {
+//                VideoGenerator.sampleBufferFromRawData(self.output, frametime: frametime, block: { [unowned self] (sampleBuffer) -> Void in
+//                    self.output.sendFrame(sampleBuffer)
+//                    })
+            }
+        }
+        camera.delegate = self
+        updateEffect()
     }
     
-    func setupStreamer() {
-        let tempDir = NSTemporaryDirectory()
-        let targetUrl = NSURL(fileURLWithPath: "\(tempDir)/temp.mp4")
-        do {
-            try NSFileManager.defaultManager().removeItemAtPath("\(tempDir)/temp.mp4")
-        } catch _ {
-        }
-        
-        self.streamer = GPUImageMovieCapture(URL: targetUrl, size: CGSizeMake(480, 360))
-        
-        self.streamer.encodingLiveVideo = true
-        self.streamer.shouldPassthroughAudio = true
-        self.camera.delegate = self
-
-        self.camera.audioEncodingTarget = self.streamer
-        
-        self.streamer.completionBlock = {
-            Logger.log("StreamerViewController: streaming finished.")
-        }
-        
-        self.streamer.failureBlock = { (error) in
-            Logger.log("StreamerViewController: streaming failured")
-        }
-        
-        self.updateEffect()
+    func startStreaming() {
+        output.startRecording()
     }
     
     func finishStreaming() {
-        self.streamer.finishRecording()
-        self.filterGroup?.removeTarget(self.streamer)
-        self.camera.audioEncodingTarget = nil;
+        output.finishRecording()
+        filterGroup?.removeTarget(output)
+        camera.audioEncodingTarget = nil;
     }
     
     func updateEffect() {
-        self.camera.removeAllTargets()
+        camera.removeAllTargets()
         filterGroup?.removeAllTargets()
         var filters = [GPUImageOutput]()
         
-        filters.append(createBaseFilter())
-
-        self.filterGroup = self.connectFilters(filters)
-        self.camera.addTarget(self.filterGroup)
-        self.filterGroup?.addTarget(self.filterView)
-        self.filterGroup?.addTarget(self.streamer)
+//        filters.append(GPUImageColorInvertFilter())
+        filters.append(GPUImageChromaKeyFilter())
+        
+        filterGroup = connectFilters(filters)
+        camera.addTarget(filterGroup)
+        filterGroup?.addTarget(filterView)
+        filterGroup?.addTarget(output)
     }
     
-    func createBaseFilter() -> GPUImageFilter {
-        let filter = GPUImageSepiaFilter()
-        return filter
-    }
-
     func connectFilters(filters: [GPUImageOutput]) -> GPUImageFilterGroup {
         let filterGroup = GPUImageFilterGroup()
         
@@ -114,12 +87,12 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         
         return filterGroup
     }
-
+    
     // MARK:
     func willOutputSampleBuffer(sampleBuffer: CMSampleBufferRef) {
-//        if streamer.active() {
-//            let copyBuffer = streamer.copySampleBuffer(sampleBuffer).takeRetainedValue()
-//            self.streamer.sendFrame(copyBuffer)
-//        }
+        if output.active() {
+            let copyBuffer = VideoGenerator.copySampleBuffer(sampleBuffer).takeRetainedValue()
+            output.sendFrame(copyBuffer)
+        }
     }
 }

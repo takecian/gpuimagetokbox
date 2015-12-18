@@ -3,4 +3,6 @@
 //
 
 #import "GPUImage.h"
-#import "GPUImageMovieCapture.h"
+#import "GPUImageColorSpaceConverter.h"
+#import "VideoGenerator.h"
+#import "GPUImageCustomRawDataOutput.h"

@@ -16,7 +16,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         viewModel.startCapture()
-        viewModel.setupStreamer()
         viewModel.filterView.frame = view.frame
         view.addSubview(viewModel.filterView)
     }
@@ -28,7 +27,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.streamer.startRecording()
+        viewModel.startStreaming()
     }
 
 }
