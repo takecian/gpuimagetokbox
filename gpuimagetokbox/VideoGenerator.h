@@ -10,12 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "GPUImage.h"
 
-typedef void (^VideogeneratorCallBack)(BOOL isFinished);
-
 @interface VideoGenerator : NSObject
 
 + (CMSampleBufferRef)copySampleBuffer:(CMSampleBufferRef)sampleBuffer;
-
 + (void)sampleBufferFromRawData:(GPUImageRawDataOutput*)output frametime:(CMTime)frametime block:(void (^)(CMSampleBufferRef))block;
 
 @end

@@ -24,6 +24,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         camera.horizontallyMirrorRearFacingCamera = false
         
         camera.startCameraCapture()
+        
         output = GPUImageCustomRawDataOutput(imageSize: CGSizeMake(640, 480), resultsInBGRAFormat: false)
         output.newFrameAvailableBlockWithTime = {
             [unowned self] (frametime) in

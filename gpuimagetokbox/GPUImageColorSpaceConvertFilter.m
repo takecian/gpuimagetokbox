@@ -6,7 +6,7 @@
 //  Copyright © 2015 takecian. All rights reserved.
 //
 
-#import "GPUImageColorSpaceConverter.h"
+#import "GPUImageColorSpaceConvertFilter.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 NSString *const kGPUImageConvertFragmentShaderString = SHADER_STRING
@@ -46,7 +46,7 @@ NSString *const kGPUImageConvertFragmentShaderString = SHADER_STRING
  );
 #endif
 
-@implementation GPUImageColorSpaceConverter
+@implementation GPUImageColorSpaceConvertFilter
 
 - (id)init;
 {

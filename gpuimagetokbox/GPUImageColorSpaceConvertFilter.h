@@ -8,6 +8,6 @@
 
 #import "GPUImageFilter.h"
 
-@interface GPUImageColorSpaceConverter : GPUImageFilter
+@interface GPUImageColorSpaceConvertFilter : GPUImageFilter
 
 @end

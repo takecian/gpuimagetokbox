@@ -54,6 +54,7 @@
     CMSampleBufferGetSampleTimingInfoArray(newSampleBuffer, count, pInfo, &count);
     for (CMItemCount i = 0; i < count; i++)
     {
+        pInfo[i].duration = CMTimeMake(1, 12);
         pInfo[i].decodeTimeStamp = newTimeStamp; // kCMTimeInvalid if in sequence
         pInfo[i].presentationTimeStamp = newTimeStamp;
         
