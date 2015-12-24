@@ -9,11 +9,11 @@
 #import "GPUImageCustomRawDataOutput.h"
 #import "TBExamplePublisher.h"
 
-static NSString* const kApiKey = @"45432642";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX40NTQzMjY0Mn5-MTQ1MDY2NTY1NTQ5NH5SdXcvakhLQjYzZkxOWnplQm5VejdqSWV-fg";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NTQzMjY0MiZzaWc9MTZmOWI4MWQ3OGVjZGYxODBhYjE4MjE0MDU5NjBkZjE2M2Y0ZjhhMjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5UUXpNalkwTW41LU1UUTFNRFkyTlRZMU5UUTVOSDVTZFhjdmFraExRall6Wmt4T1ducGxRbTVWZWpkcVNXVi1mZyZjcmVhdGVfdGltZT0xNDUwNjY1NjU5Jm5vbmNlPTAuMzc5NjU2MTQwNzA0MDM2MiZleHBpcmVfdGltZT0xNDUzMjU3NjUwJmNvbm5lY3Rpb25fZGF0YT0=";
+static NSString* const kToken = @"";
 
 @interface GPUImageCustomRawDataOutput ()<OTSessionDelegate, OTPublisherDelegate>
 
