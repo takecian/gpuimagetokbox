@@ -8,6 +8,7 @@
 
 #import "VideoGenerator.h"
 #import <AVFoundation/AVFoundation.h>
+#import "libyuv.h"
 
 @interface VideoGenerator ()
 
@@ -25,16 +26,69 @@
     return sbufCopyOut;
 }
 
-+ (void)sampleBufferFromRawData:(GPUImageRawDataOutput*)output frametime:(CMTime)frametime block:(void (^)(CMSampleBufferRef))block;{
++ (void)sampleBufferFromRawData:(GPUImageRawDataOutput*)output
+                      frametime:(CMTime)frametime
+                          block:(void (^)(CMSampleBufferRef))block
+{
     [output lockFramebufferForReading];
     
-    GLubyte *outputBytes = [output rawBytesForImage];
+    // TODO: Wire this up to the initializer (or output object) so different sizes can work
+    CGSize imageSize = CGSizeMake(640, 480);
+    
+    GLubyte *sourceBytes = [output rawBytesForImage];
     NSInteger bytesPerRow = [output bytesPerRowInOutput];
     NSLog(@"bytesPerRow = %ld", (long)bytesPerRow);
+    
+    int dst_width = 640;
+    int dst_height = 480;
+    int half_width = (dst_width + 1) / 2;
+    int half_height = (dst_height + 1) / 2;
 
+    const int y_size = dst_width * dst_height;
+    const int uv_size = half_width * half_height;
+    const size_t total_size = y_size + 2 * uv_size;
+    
+    uint8_t* outputBytes = malloc(total_size);
+    BGRAToI420(sourceBytes, bytesPerRow,
+                       outputBytes, dst_width,
+                       outputBytes + dst_width * dst_height, half_width,
+                       outputBytes + dst_width * dst_height + half_width * half_height,  half_width,
+                       dst_width, dst_height);
+    
     CVPixelBufferRef pixel_buffer = NULL;
-    OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
-
+    //    OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
+    
+    size_t planeWidths[2];
+    planeWidths[0] = imageSize.width;
+    planeWidths[1] = imageSize.width;
+    
+    size_t planeHeights[2];
+    planeHeights[0] = imageSize.height;
+    planeHeights[1] = imageSize.height / 2;
+    
+    uint8_t* baseAddresses[2];
+    baseAddresses[0] = outputBytes;
+    size_t baseOffset = (imageSize.width * imageSize.height);
+    baseAddresses[1] = &(outputBytes[baseOffset]);
+    
+    OSStatus result =
+    CVPixelBufferCreateWithPlanarBytes
+    (kCFAllocatorDefault,
+     imageSize.width,
+     imageSize.height,
+     kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange,
+     NULL,
+     NULL,
+     2,
+     baseAddresses,
+     &planeWidths,
+     &planeHeights,
+     &planeWidths,
+     NULL,
+     NULL,
+     NULL,
+     &pixel_buffer);
+    
     CMSampleBufferRef newSampleBuffer = NULL;
     CMSampleTimingInfo timimgInfo = kCMTimingInfoInvalid;
     CMVideoFormatDescriptionRef videoInfo = NULL;
@@ -66,8 +120,9 @@
     block(sout);
     CVPixelBufferUnlockBaseAddress(pixel_buffer, 0);
     CVPixelBufferRelease(pixel_buffer);
-
+    
     [output unlockFramebufferAfterReading];
+    free(outputBytes);
     return;
 }
 

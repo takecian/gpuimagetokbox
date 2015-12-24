@@ -36,6 +36,7 @@
 		AC9D69961C23A2EA00EE8080 /* VideoGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69951C23A2EA00EE8080 /* VideoGenerator.m */; };
 		AC9D69991C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D69981C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m */; };
 		AC9D699D1C23D6A800EE8080 /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACB850F01C2BACCF00CC3040 /* libyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB850EF1C2BACCF00CC3040 /* libyuv.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,25 @@
 		AC9D69981C23BA2C00EE8080 /* GPUImageCustomRawDataOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageCustomRawDataOutput.m; sourceTree = "<group>"; };
 		AC9D699B1C23D6A800EE8080 /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
 		AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
+		AC9D69A61C27D32E00EE8080 /* basic_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basic_types.h; sourceTree = "<group>"; };
+		AC9D69A71C27D32E00EE8080 /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
+		AC9D69A81C27D32E00EE8080 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
+		AC9D69A91C27D32E00EE8080 /* convert_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_argb.h; sourceTree = "<group>"; };
+		AC9D69AA1C27D32E00EE8080 /* convert_from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from.h; sourceTree = "<group>"; };
+		AC9D69AB1C27D32E00EE8080 /* convert_from_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from_argb.h; sourceTree = "<group>"; };
+		AC9D69AC1C27D32E00EE8080 /* cpu_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_id.h; sourceTree = "<group>"; };
+		AC9D69AD1C27D32E00EE8080 /* mjpeg_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mjpeg_decoder.h; sourceTree = "<group>"; };
+		AC9D69AE1C27D32E00EE8080 /* planar_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planar_functions.h; sourceTree = "<group>"; };
+		AC9D69AF1C27D32E00EE8080 /* rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate.h; sourceTree = "<group>"; };
+		AC9D69B01C27D32E00EE8080 /* rotate_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_argb.h; sourceTree = "<group>"; };
+		AC9D69B11C27D32E00EE8080 /* row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = row.h; sourceTree = "<group>"; };
+		AC9D69B21C27D32E00EE8080 /* scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale.h; sourceTree = "<group>"; };
+		AC9D69B31C27D32E00EE8080 /* scale_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_argb.h; sourceTree = "<group>"; };
+		AC9D69B41C27D32E00EE8080 /* scale_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_row.h; sourceTree = "<group>"; };
+		AC9D69B51C27D32E00EE8080 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		AC9D69B61C27D32E00EE8080 /* video_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_common.h; sourceTree = "<group>"; };
+		AC9D69B71C27D32E00EE8080 /* libyuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libyuv.h; path = include/libyuv.h; sourceTree = "<group>"; };
+		ACB850EF1C2BACCF00CC3040 /* libyuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libyuv.a; sourceTree = "<group>"; };
 		C1D2ACACBA59D702702846C0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CDD033B8BBF63A6FA1B0CE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,13 +109,14 @@
 			files = (
 				AC9D693E1C2171B700EE8080 /* libsqlite3.tbd in Frameworks */,
 				AC9D693C1C2171AF00EE8080 /* libc++.tbd in Frameworks */,
+				ACB850F01C2BACCF00CC3040 /* libyuv.a in Frameworks */,
+				AC9D692E1C21718100EE8080 /* OpenGLES.framework in Frameworks */,
 				AC9D693A1C2171A700EE8080 /* Foundation.framework in Frameworks */,
 				AC9D69381C2171A100EE8080 /* UIKit.framework in Frameworks */,
 				AC9D69361C21719B00EE8080 /* CoreGraphics.framework in Frameworks */,
 				AC9D69341C21719400EE8080 /* AVFoundation.framework in Frameworks */,
 				AC9D69321C21718E00EE8080 /* AudioToolbox.framework in Frameworks */,
 				AC9D69301C21718800EE8080 /* CoreMedia.framework in Frameworks */,
-				AC9D692E1C21718100EE8080 /* OpenGLES.framework in Frameworks */,
 				AC9D692C1C21717C00EE8080 /* CoreVideo.framework in Frameworks */,
 				AC9D692A1C21717600EE8080 /* QuartzCore.framework in Frameworks */,
 				AC9D69281C21717000EE8080 /* GLKit.framework in Frameworks */,
@@ -160,6 +181,9 @@
 		AC9D67071C216E9B00EE8080 /* gpuimagetokbox */ = {
 			isa = PBXGroup;
 			children = (
+				AC9D69A51C27D32E00EE8080 /* libyuv */,
+				AC9D69B71C27D32E00EE8080 /* libyuv.h */,
+				ACB850EF1C2BACCF00CC3040 /* libyuv.a */,
 				AC9D694E1C2173F800EE8080 /* TokBoxSample */,
 				AC9D67081C216E9B00EE8080 /* AppDelegate.swift */,
 				AC9D69941C23A2EA00EE8080 /* VideoGenerator.h */,
@@ -193,6 +217,31 @@
 				AC9D699C1C23D6A800EE8080 /* TBExamplePublisher.m */,
 			);
 			name = TokBoxSample;
+			sourceTree = "<group>";
+		};
+		AC9D69A51C27D32E00EE8080 /* libyuv */ = {
+			isa = PBXGroup;
+			children = (
+				AC9D69A61C27D32E00EE8080 /* basic_types.h */,
+				AC9D69A71C27D32E00EE8080 /* compare.h */,
+				AC9D69A81C27D32E00EE8080 /* convert.h */,
+				AC9D69A91C27D32E00EE8080 /* convert_argb.h */,
+				AC9D69AA1C27D32E00EE8080 /* convert_from.h */,
+				AC9D69AB1C27D32E00EE8080 /* convert_from_argb.h */,
+				AC9D69AC1C27D32E00EE8080 /* cpu_id.h */,
+				AC9D69AD1C27D32E00EE8080 /* mjpeg_decoder.h */,
+				AC9D69AE1C27D32E00EE8080 /* planar_functions.h */,
+				AC9D69AF1C27D32E00EE8080 /* rotate.h */,
+				AC9D69B01C27D32E00EE8080 /* rotate_argb.h */,
+				AC9D69B11C27D32E00EE8080 /* row.h */,
+				AC9D69B21C27D32E00EE8080 /* scale.h */,
+				AC9D69B31C27D32E00EE8080 /* scale_argb.h */,
+				AC9D69B41C27D32E00EE8080 /* scale_row.h */,
+				AC9D69B51C27D32E00EE8080 /* version.h */,
+				AC9D69B61C27D32E00EE8080 /* video_common.h */,
+			);
+			name = libyuv;
+			path = include/libyuv;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +492,11 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = gpuimagetokbox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/gpuimagetokbox",
+					"$(PROJECT_DIR)/gpuimagetokbox/include/libyuv",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.takecian.gpuimagetokbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "gpuimagetokbox/gpuimagetokbox-Bridging-Header.h";
@@ -459,6 +513,11 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = gpuimagetokbox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/gpuimagetokbox",
+					"$(PROJECT_DIR)/gpuimagetokbox/include/libyuv",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.takecian.gpuimagetokbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "gpuimagetokbox/gpuimagetokbox-Bridging-Header.h";

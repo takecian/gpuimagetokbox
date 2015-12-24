@@ -9,11 +9,11 @@
 #import "GPUImageCustomRawDataOutput.h"
 #import "TBExamplePublisher.h"
 
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"45432642";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX40NTQzMjY0Mn5-MTQ1MDY2NTY1NTQ5NH5SdXcvakhLQjYzZkxOWnplQm5VejdqSWV-fg";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NTQzMjY0MiZzaWc9MTZmOWI4MWQ3OGVjZGYxODBhYjE4MjE0MDU5NjBkZjE2M2Y0ZjhhMjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5UUXpNalkwTW41LU1UUTFNRFkyTlRZMU5UUTVOSDVTZFhjdmFraExRall6Wmt4T1ducGxRbTVWZWpkcVNXVi1mZyZjcmVhdGVfdGltZT0xNDUwNjY1NjU5Jm5vbmNlPTAuMzc5NjU2MTQwNzA0MDM2MiZleHBpcmVfdGltZT0xNDUzMjU3NjUwJmNvbm5lY3Rpb25fZGF0YT0=";
 
 @interface GPUImageCustomRawDataOutput ()<OTSessionDelegate, OTPublisherDelegate>
 
@@ -270,19 +270,11 @@ didFailWithError:(OTError*)error
 - (BOOL)imageBufferIsSanitary:(CVImageBufferRef)imageBuffer
 {
     size_t planeCount = CVPixelBufferGetPlaneCount(imageBuffer);
-    // (Apple bug?) interleaved chroma plane measures in at half of actual size.
-    // No idea how many pixel formats this applys to, but we're specifically
-    // targeting 4:2:0 here, so there are some assuptions that must be made.
-    BOOL biplanar = (2 == planeCount);
     
     for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
         size_t imageWidth =
         CVPixelBufferGetWidthOfPlane(imageBuffer, i) *
         CVPixelBufferGetHeightOfPlane(imageBuffer, i);
-        
-        if (biplanar && 1 == i) {
-            imageWidth *= 2;
-        }
         
         size_t dataWidth =
         CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, i) *
@@ -296,8 +288,7 @@ didFailWithError:(OTError*)error
         BOOL nextPlaneContiguous = YES;
         
         if (hasNextAddress) {
-            size_t planeLength =
-            dataWidth * CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+            size_t planeLength = dataWidth;
             
             uint8_t* baseAddress =
             CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i);
@@ -398,9 +389,9 @@ didFailWithError:(OTError*)error
     _videoFrame.format.imageWidth = width;
     _videoFrame.format.imageHeight = height;
     _videoFrame.format.estimatedFramesPerSecond = 12;
+    _videoFrame.orientation = OTVideoOrientationUp;
     // TODO: how do we measure this from AVFoundation?
     _videoFrame.format.estimatedCaptureDelay = 100;
-    _videoFrame.orientation = OTVideoOrientationLeft;
     
     [_videoFrame clearPlanes];
     uint8_t* sanitizedImageBuffer = NULL;
@@ -427,7 +418,7 @@ didFailWithError:(OTError*)error
 - (void)newFrameReadyAtTime:(CMTime)frameTime atIndex:(NSInteger)textureIndex;
 {
     [super newFrameReadyAtTime:frameTime atIndex:textureIndex];
-
+    
     if (_newFrameAvailableBlockWithTime != NULL)
     {
         _newFrameAvailableBlockWithTime(frameTime);
@@ -435,3 +426,4 @@ didFailWithError:(OTError*)error
 }
 
 @end
+

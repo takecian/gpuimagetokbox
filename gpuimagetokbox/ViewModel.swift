@@ -12,6 +12,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     let filterView = GPUImageView()
     var camera: GPUImageVideoCamera!
     var filterGroup: GPUImageFilterGroup?
+    var frameImage: GPUImagePicture!
     var output: GPUImageCustomRawDataOutput!
     
     func startCapture() {
@@ -53,8 +54,15 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         filterGroup?.removeAllTargets()
         var filters = [GPUImageOutput]()
         
-//        filters.append(GPUImageColorInvertFilter())
-        filters.append(GPUImageChromaKeyFilter())
+        let slimFilter = GPUImageTransformFilter()
+        slimFilter.affineTransform = CGAffineTransformMakeScale(1 + 0.2, 1.2)
+        filters.append(slimFilter)
+        
+        let cropFilter = GPUImageCropFilter()
+        cropFilter.cropRegion = CGRectMake(0, 0.25, 1.0, 0.5)
+        filters.append(cropFilter)
+
+        filters.append(GPUImageColorInvertFilter())
         
         filterGroup = connectFilters(filters)
         camera.addTarget(filterGroup)
@@ -62,6 +70,14 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         filterGroup?.addTarget(output)
     }
     
+    func createFrameImageFilter(image: UIImage) -> GPUImageFilter {
+        let filter = GPUImageOverlayBlendFilter()
+        frameImage = GPUImagePicture(image: image, smoothlyScaleOutput:true)
+        frameImage.processImage()
+        frameImage.addTarget(filter)
+        return filter
+    }
+
     func connectFilters(filters: [GPUImageOutput]) -> GPUImageFilterGroup {
         let filterGroup = GPUImageFilterGroup()
         
