@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "GPUImage.h"
+#import "GPUImageCustomRawDataOutput.h"
 
 @interface VideoGenerator : NSObject
 
 + (CMSampleBufferRef)copySampleBuffer:(CMSampleBufferRef)sampleBuffer;
-+ (void)sampleBufferFromRawData:(GPUImageRawDataOutput*)output frametime:(CMTime)frametime block:(void (^)(CMSampleBufferRef))block;
++ (void)sampleBufferFromRawData:(GPUImageCustomRawDataOutput*)output frametime:(CMTime)frametime block:(void (^)(CMSampleBufferRef))block;
 
 @end

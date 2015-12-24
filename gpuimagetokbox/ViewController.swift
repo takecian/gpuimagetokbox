@@ -11,13 +11,15 @@ import UIKit
 class ViewController: UIViewController {
 
     let viewModel = ViewModel()
-    
+    let button = UIButton()
+    @IBOutlet weak var baseView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         viewModel.startCapture()
-        viewModel.filterView.frame = view.frame
-        view.addSubview(viewModel.filterView)
+        viewModel.filterView.frame = baseView.frame
+        baseView.addSubview(viewModel.filterView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,5 +32,9 @@ class ViewController: UIViewController {
         viewModel.startStreaming()
     }
 
+    @IBAction func buttonTapped(sender: AnyObject) {
+        viewModel.isInvert = !viewModel.isInvert
+        viewModel.updateEffect()
+    }
 }
 

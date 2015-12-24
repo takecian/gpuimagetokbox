@@ -222,6 +222,9 @@ didFailWithError:(OTError*)error
     
 }
 
+- (CGSize)videoSize {
+    return imageSize;
+}
 /// Start/Stop sending video frames.
 - (void)showVideo:(BOOL)show {
     //    sendVideo = show;

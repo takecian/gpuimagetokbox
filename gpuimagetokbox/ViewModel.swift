@@ -14,6 +14,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     var filterGroup: GPUImageFilterGroup?
     var frameImage: GPUImagePicture!
     var output: GPUImageCustomRawDataOutput!
+    var isInvert = false
     
     func startCapture() {
         camera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: AVCaptureDevicePosition.Front)
@@ -25,6 +26,8 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         camera.horizontallyMirrorRearFacingCamera = false
         
         camera.startCameraCapture()
+        
+        filterView.contentMode = .ScaleAspectFit
         
         output = GPUImageCustomRawDataOutput(imageSize: CGSizeMake(640, 480), resultsInBGRAFormat: false)
         output.newFrameAvailableBlockWithTime = {
@@ -62,7 +65,9 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         cropFilter.cropRegion = CGRectMake(0, 0.25, 1.0, 0.5)
         filters.append(cropFilter)
 
-        filters.append(GPUImageColorInvertFilter())
+        if isInvert {
+            filters.append(GPUImageColorInvertFilter())
+        }
         
         filterGroup = connectFilters(filters)
         camera.addTarget(filterGroup)

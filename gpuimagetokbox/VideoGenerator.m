@@ -26,21 +26,21 @@
     return sbufCopyOut;
 }
 
-+ (void)sampleBufferFromRawData:(GPUImageRawDataOutput*)output
++ (void)sampleBufferFromRawData:(GPUImageCustomRawDataOutput*)output
                       frametime:(CMTime)frametime
                           block:(void (^)(CMSampleBufferRef))block
 {
     [output lockFramebufferForReading];
     
     // TODO: Wire this up to the initializer (or output object) so different sizes can work
-    CGSize imageSize = CGSizeMake(640, 480);
+    CGSize imageSize = [output videoSize];
     
     GLubyte *sourceBytes = [output rawBytesForImage];
     NSInteger bytesPerRow = [output bytesPerRowInOutput];
     NSLog(@"bytesPerRow = %ld", (long)bytesPerRow);
     
-    int dst_width = 640;
-    int dst_height = 480;
+    int dst_width = imageSize.width;
+    int dst_height = imageSize.height;
     int half_width = (dst_width + 1) / 2;
     int half_height = (dst_height + 1) / 2;
 
@@ -56,27 +56,26 @@
                        dst_width, dst_height);
     
     CVPixelBufferRef pixel_buffer = NULL;
-    //    OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
+//        OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8Planar, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
     
-    size_t planeWidths[2];
+    size_t planeWidths[3];
     planeWidths[0] = imageSize.width;
     planeWidths[1] = imageSize.width;
     
-    size_t planeHeights[2];
+    size_t planeHeights[3];
     planeHeights[0] = imageSize.height;
     planeHeights[1] = imageSize.height / 2;
     
-    uint8_t* baseAddresses[2];
+    uint8_t* baseAddresses[3];
     baseAddresses[0] = outputBytes;
     size_t baseOffset = (imageSize.width * imageSize.height);
     baseAddresses[1] = &(outputBytes[baseOffset]);
     
-    OSStatus result =
-    CVPixelBufferCreateWithPlanarBytes
+    OSStatus result = CVPixelBufferCreateWithPlanarBytes
     (kCFAllocatorDefault,
      imageSize.width,
      imageSize.height,
-     kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange,
+     kCVPixelFormatType_420YpCbCr8BiPlanarFullRange,
      NULL,
      NULL,
      2,

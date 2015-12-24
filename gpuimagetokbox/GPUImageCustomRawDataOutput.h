@@ -19,6 +19,7 @@
 - (void)startRecording;
 - (void)finishRecording;
 - (BOOL)active;
+- (CGSize)videoSize;
 
 - (void)sendFrame:(CMSampleBufferRef)sampleBuffer;
 - (void)newFrameReadyAtTime:(CMTime)frameTime atIndex:(NSInteger)textureIndex;
