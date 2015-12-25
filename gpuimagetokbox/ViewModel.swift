@@ -19,7 +19,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
     func startCapture() {
         camera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: AVCaptureDevicePosition.Front)
         
-        camera.frameRate = 12
+        camera.frameRate = 8
         
         camera.outputImageOrientation = UIInterfaceOrientation.Portrait
         camera.horizontallyMirrorFrontFacingCamera = true
@@ -66,7 +66,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         filters.append(cropFilter)
 
         if isInvert {
-            filters.append(GPUImageBilateralFilter())
+            filters.append(GPUImagePixellateFilter())
         }
         
         filterGroup = connectFilters(filters)
