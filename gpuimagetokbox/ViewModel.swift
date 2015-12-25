@@ -66,7 +66,7 @@ final class ViewModel: NSObject, GPUImageVideoCameraDelegate {
         filters.append(cropFilter)
 
         if isInvert {
-            filters.append(GPUImageColorInvertFilter())
+            filters.append(GPUImageBilateralFilter())
         }
         
         filterGroup = connectFilters(filters)
