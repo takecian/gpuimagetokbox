@@ -48,33 +48,39 @@
     const int uv_size = half_width * half_height;
     const size_t total_size = y_size + 2 * uv_size;
     
-    uint8_t* interMiediateBytes = malloc(total_size);
-    BGRAToI420(sourceBytes, bytesPerRow,
-                       interMiediateBytes, dst_width,
-                       interMiediateBytes + dst_width * dst_height, half_width,
-                       interMiediateBytes + dst_width * dst_height + half_width * half_height,  half_width,
-                       dst_width, dst_height);
-    
+//    uint8_t* interMiediateBytes = malloc(total_size);
+//    BGRAToI420(sourceBytes, bytesPerRow,
+//                       interMiediateBytes, dst_width,
+//                       interMiediateBytes + dst_width * dst_height, half_width,
+//                       interMiediateBytes + dst_width * dst_height + half_width * half_height,  half_width,
+//                       dst_width, dst_height);
+//    
     uint8_t* outputBytes = malloc(total_size);
-    I420ToNV12(interMiediateBytes, dst_width,
-               interMiediateBytes + dst_width * dst_height, half_width,
-               interMiediateBytes + dst_width * dst_height + half_width * half_height, half_width,
+//    I420ToNV12(interMiediateBytes, dst_width,
+//               interMiediateBytes + dst_width * dst_height, half_width,
+//               interMiediateBytes + dst_width * dst_height + half_width * half_height, half_width,
+//               outputBytes,  dst_width,
+//               outputBytes + dst_width * dst_height,  dst_width,
+//               dst_width, dst_height);
+//    free(interMiediateBytes);
+    
+    ARGBToNV12(sourceBytes, bytesPerRow,
                outputBytes,  dst_width,
                outputBytes + dst_width * dst_height,  dst_width,
                dst_width, dst_height);
-    free(interMiediateBytes);
+    
     CVPixelBufferRef pixel_buffer = NULL;
 //        OSStatus result = CVPixelBufferCreateWithBytes(kCFAllocatorDefault, 640, 480, kCVPixelFormatType_420YpCbCr8Planar, outputBytes, bytesPerRow, nil, nil, nil, &pixel_buffer);
     
-    size_t planeWidths[3];
+    size_t planeWidths[2];
     planeWidths[0] = imageSize.width;
     planeWidths[1] = imageSize.width;
     
-    size_t planeHeights[3];
+    size_t planeHeights[2];
     planeHeights[0] = imageSize.height;
     planeHeights[1] = imageSize.height / 2;
     
-    uint8_t* baseAddresses[3];
+    uint8_t* baseAddresses[2];
     baseAddresses[0] = outputBytes;
     size_t baseOffset = (imageSize.width * imageSize.height);
     baseAddresses[1] = &(outputBytes[baseOffset]);
